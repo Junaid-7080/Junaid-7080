@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+    
+      </tr>
+    </thead>
+    <body>
+      <tr>
+        <td>{{request.user}}</td>
+        <td>{{request.user.email}}</td>
+        <td><a href="{% url 'user_detail' user.id %}">profile</a></td>
+      </tr>
+    </tbody>
+  </table>
+  {% endblock %}
+    
+
+
+  {% for message in messages %}
+      {% if message.tags == "error" %}
+          <span style="color: red;">{{message}}</span>
+      {% elif message.tags == "success" %}
+          <span style="color: green;">{{message}}</span>
+      {% else %}
+      <span style="color: blue;">{{message}}</span>
+      {% endif %}
+  {% endfor %}    
+  
+

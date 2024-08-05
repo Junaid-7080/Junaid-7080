@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Page</title>
+
+</head>
+<body>
+    <h1>Please enter your valid Username</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>username</label>
+        <input type="text"name="username"><br><br>
+        <input type="submit" value="submit">
+
+    </form>
+    
+</body>
+</html>
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}  

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="color: brown;text-align: center;">Edit your Blog</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Title</label><br>
+        <input type="text" name="title" value="{{blog.title}}"><br><br>
+        <label>content</label><br>
+        <input type="text" name="content" value="{{blog.content}}"><br><br>
+
+        <select name="cate">
+            {% for c in cat %}
+            <option value="{{c.0}}"{% if blog.category == c.0 %}selected{% endif %}>{{c.1}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Image</label><br><br>
+        {% if blog.image %}
+        <h6>Currently :{{blog.image.url}}</h6>
+        {% endif %}
+        <input type="file" name="image" accept="images/*"><br><br>
+
+        <input type="submit" value="Edit">
+
+    </form>
+    
+</body>
+</html>
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {{% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}    

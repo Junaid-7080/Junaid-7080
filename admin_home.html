@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="color: blue;text-align: center;">ADMIN BLOG LIST</h1>
+<hr><hr>
+{% for i in blog %} 
+<div class="card text-center">
+    <div class="card-header">
+      {{i.title}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{i.content}}</h5>
+
+      <a href="{% url 'change_status' i.id %}" class="btn btn-primary">{% if i.is_published %}Published{% else %}Not Published{% endif %}</a>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}    
+

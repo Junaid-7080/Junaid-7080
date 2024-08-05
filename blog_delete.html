@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Blog Delete</h1>
+<hr>
+<div class="card-body">
+
+    <form method="post">
+        {% csrf_token %}
+        <h5 class="card-title">Are you sure  want to delete this '{{blog.title}}'</h5>
+
+        <input class="btn btn-danger" type="submit" value="delete">
+    </form>
+    <a class= "btn btn-primary" href="{% url 'home' %}">Cancel</a>
+</div>
+
+{% endblock %}
+    
+
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}    
